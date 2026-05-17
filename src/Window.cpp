@@ -9,7 +9,7 @@ namespace {
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 }
 
-girafagir::Window::Window(const int width, const int height, const std::string_view title) {
+girafarig::Window::Window(const int width, const int height, const std::string_view title) {
     window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
     if (window == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -20,21 +20,21 @@ girafagir::Window::Window(const int width, const int height, const std::string_v
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 }
 
-girafagir::Window::~Window() {
+girafarig::Window::~Window() {
     glfwDestroyWindow(window);
 }
 
-bool girafagir::Window::shouldClose() const {
+bool girafarig::Window::shouldClose() const {
     return glfwWindowShouldClose(window);
 }
 
-void girafagir::Window::processInput() const {
+void girafarig::Window::processInput() const {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 }
 
-void girafagir::Window::swapBuffers() const {
+void girafarig::Window::swapBuffers() const {
     glfwSwapBuffers(window);
 }
 

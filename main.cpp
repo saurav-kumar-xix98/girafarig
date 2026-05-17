@@ -2,12 +2,15 @@
 
 #include "GlfwContext.h"
 #include "OpenGlContext.h"
+#include "ShaderProgram.h"
 #include "Window.h"
 
 int main() {
-    girafagir::GlfwContext::initialize();
-    const girafagir::Window window(800, 600, "Girafagir");
-    girafagir::OpenGlContext::initialize();
+    girafarig::GlfwContext::initialize();
+    const girafarig::Window window(800, 600, "Girafagir");
+    girafarig::OpenGlContext::initialize();
+
+    girafarig::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
 
     while (!window.shouldClose()) {
         window.processInput();
@@ -19,6 +22,6 @@ int main() {
         glfwPollEvents();
     }
 
-    girafagir::GlfwContext::terminate();
+    girafarig::GlfwContext::terminate();
     return 0;
 }

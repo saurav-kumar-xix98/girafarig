@@ -1,6 +1,6 @@
 #pragma once
 
-namespace girafagir {
+namespace girafarig {
     class OpenGlContext {
     public:
         static void initialize();

@@ -1,6 +1,6 @@
 # pragma once
 
-namespace girafagir {
+namespace girafarig {
     class GlfwContext {
     public:
         static void initialize();
