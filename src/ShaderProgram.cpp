@@ -41,6 +41,10 @@ girafarig::ShaderProgram::~ShaderProgram() {
     glDeleteProgram(id);
 }
 
+void girafarig::ShaderProgram::useProgram() const {
+    glUseProgram(id);
+}
+
 namespace {
     std::string readFile(const std::filesystem::path &path) {
         std::ifstream fileStream(path, std::ios::binary);
