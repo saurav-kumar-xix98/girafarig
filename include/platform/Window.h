@@ -5,7 +5,7 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
-namespace girafarig {
+namespace girafarig::platform {
     class Window {
     public:
         Window(int width, int height, std::string_view title);

@@ -1,11 +1,11 @@
-#include "Shader.h"
+#include "graphics/shader/Shader.h"
 
 #include <iostream>
 #include <ostream>
 
 #include "glad/glad.h"
 
-girafarig::Shader::Shader(const std::string_view source, const ShaderType type)
+girafarig::graphics::shader::Shader::Shader(const std::string_view source, const ShaderType type)
     : id(glCreateShader(type == VERTEX_SHADER ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER)) {
 
     const char* shaderSource = source.data();
@@ -23,10 +23,10 @@ girafarig::Shader::Shader(const std::string_view source, const ShaderType type)
     }
 }
 
-girafarig::Shader::~Shader() {
+girafarig::graphics::shader::Shader::~Shader() {
     glDeleteShader(id);
 }
 
-unsigned int girafarig::Shader::getId() const {
+unsigned int girafarig::graphics::shader::Shader::getId() const {
     return id;
 }

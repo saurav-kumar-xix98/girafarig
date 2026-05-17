@@ -2,7 +2,7 @@
 
 #include <filesystem>
 
-namespace girafarig {
+namespace girafarig::graphics::shader {
     class ShaderProgram {
     public:
         ShaderProgram(const std::filesystem::path &vertexShaderFilePath, const std::filesystem::path &fragmentShaderFilePath);

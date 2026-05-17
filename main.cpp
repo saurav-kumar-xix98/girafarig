@@ -1,22 +1,22 @@
 #include <vector>
 
-#include "GlfwContext.h"
-#include "IndexBuffer.h"
-#include "OpenGlContext.h"
-#include "ShaderProgram.h"
-#include "Vertex.h"
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "Window.h"
+#include "graphics/buffer/IndexBuffer.h"
+#include "graphics/buffer/VertexArray.h"
+#include "graphics/buffer/VertexBuffer.h"
+#include "graphics/context/OpenGlContext.h"
+#include "graphics/shader/ShaderProgram.h"
+#include "graphics/Vertex.h"
+#include "platform/GlfwContext.h"
+#include "platform/Window.h"
 
 #include <glad/glad.h>
 
 int main() {
-    girafarig::GlfwContext::initialize();
-    const girafarig::Window window(800, 600, "Girafagir");
-    girafarig::OpenGlContext::initialize();
+    girafarig::platform::GlfwContext::initialize();
+    const girafarig::platform::Window window(800, 600, "Girafagir");
+    girafarig::graphics::context::OpenGlContext::initialize();
 
-    const girafarig::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
+    const girafarig::graphics::shader::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
     shaderProgram.useProgram();
 
     const std::vector<girafarig::Vertex> vertices = {
@@ -31,16 +31,16 @@ int main() {
         1, 2, 3
     };
 
-    const girafarig::VertexArray vertexArray;
+    const girafarig::graphics::buffer::VertexArray vertexArray;
     vertexArray.bind();
 
-    const girafarig::VertexBuffer vertexBuffer;
+    const girafarig::graphics::buffer::VertexBuffer vertexBuffer;
     vertexBuffer.bind();
-    girafarig::VertexBuffer::addVertices(vertices);
+    girafarig::graphics::buffer::VertexBuffer::addVertices(vertices);
 
-    const girafarig::IndexBuffer indexBuffer;
+    const girafarig::graphics::buffer::IndexBuffer indexBuffer;
     indexBuffer.bind();
-    girafarig::IndexBuffer::addIndices(indices);
+    girafarig::graphics::buffer::IndexBuffer::addIndices(indices);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(girafarig::Vertex), (void*)0);
     glEnableVertexAttribArray(0);
@@ -57,6 +57,6 @@ int main() {
         glfwPollEvents();
     }
 
-    girafarig::GlfwContext::terminate();
+    girafarig::platform::GlfwContext::terminate();
     return 0;
 }

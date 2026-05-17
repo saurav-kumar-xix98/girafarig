@@ -1,7 +1,7 @@
 #pragma once
 #include <string_view>
 
-namespace girafarig {
+namespace girafarig::graphics::shader {
     enum ShaderType {
         VERTEX_SHADER,
         FRAGMENT_SHADER,

@@ -22,15 +22,15 @@ target_include_directories(glad PUBLIC
 # -------------------------
 add_executable(girafarig
     main.cpp
-    src/Window.cpp
-        src/GlfwContext.cpp
-        include/OpenGlContext.h
-        src/OpenGlContext.cpp
-        src/Shader.cpp
-        src/ShaderProgram.cpp
-        src/IndexBuffer.cpp
-        src/VertexBuffer.cpp
-        src/VertexArray.cpp
+        src/platform/Window.cpp
+        src/platform/GlfwContext.cpp
+        include/graphics/context/OpenGlContext.h
+        src/graphics/context/OpenGlContext.cpp
+        src/graphics/shader/Shader.cpp
+        src/graphics/shader/ShaderProgram.cpp
+        src/graphics/buffer/IndexBuffer.cpp
+        src/graphics/buffer/VertexBuffer.cpp
+        src/graphics/buffer/VertexArray.cpp
 )
 
 target_include_directories(girafarig PRIVATE

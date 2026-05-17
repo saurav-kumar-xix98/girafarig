@@ -1,6 +1,6 @@
 #pragma once
 
-namespace girafarig {
+namespace girafarig::graphics::buffer {
     class VertexArray {
     public:
         VertexArray();

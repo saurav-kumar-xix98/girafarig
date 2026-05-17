@@ -1,8 +1,8 @@
-#include "ShaderProgram.h"
+#include "graphics/shader/ShaderProgram.h"
 
 #include <filesystem>
 
-#include "Shader.h"
+#include "graphics/shader/Shader.h"
 
 #include <fstream>
 #include <iostream>
@@ -13,7 +13,7 @@ namespace {
     std::string readFile(const std::filesystem::path &path);
 }
 
-girafarig::ShaderProgram::ShaderProgram(const std::filesystem::path &vertexShaderFilePath, const std::filesystem::path &fragmentShaderFilePath)
+girafarig::graphics::shader::ShaderProgram::ShaderProgram(const std::filesystem::path &vertexShaderFilePath, const std::filesystem::path &fragmentShaderFilePath)
     : id(glCreateProgram()) {
 
     const std::string vertexShaderSource = readFile(vertexShaderFilePath);
@@ -37,11 +37,11 @@ girafarig::ShaderProgram::ShaderProgram(const std::filesystem::path &vertexShade
     }
 }
 
-girafarig::ShaderProgram::~ShaderProgram() {
+girafarig::graphics::shader::ShaderProgram::~ShaderProgram() {
     glDeleteProgram(id);
 }
 
-void girafarig::ShaderProgram::useProgram() const {
+void girafarig::graphics::shader::ShaderProgram::useProgram() const {
     glUseProgram(id);
 }
 

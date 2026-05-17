@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "../../include/platform/Window.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -9,7 +9,7 @@ namespace {
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 }
 
-girafarig::Window::Window(const int width, const int height, const std::string_view title) {
+girafarig::platform::Window::Window(const int width, const int height, const std::string_view title) {
     window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
     if (window == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -20,21 +20,21 @@ girafarig::Window::Window(const int width, const int height, const std::string_v
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 }
 
-girafarig::Window::~Window() {
+girafarig::platform::Window::~Window() {
     glfwDestroyWindow(window);
 }
 
-bool girafarig::Window::shouldClose() const {
+bool girafarig::platform::Window::shouldClose() const {
     return glfwWindowShouldClose(window);
 }
 
-void girafarig::Window::processInput() const {
+void girafarig::platform::Window::processInput() const {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 }
 
-void girafarig::Window::swapBuffers() const {
+void girafarig::platform::Window::swapBuffers() const {
     glfwSwapBuffers(window);
 }
 

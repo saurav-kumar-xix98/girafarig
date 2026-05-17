@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-namespace girafarig {
+namespace girafarig::graphics::buffer {
     class IndexBuffer {
     public:
         IndexBuffer();
