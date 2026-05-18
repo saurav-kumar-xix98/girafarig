@@ -45,6 +45,10 @@ void girafarig::graphics::shader::ShaderProgram::useProgram() const {
     glUseProgram(id);
 }
 
+void girafarig::graphics::shader::ShaderProgram::setUniform(const std::string& name, const math::Vector<4> value) const {
+    glUniform4fv(glGetUniformLocation(id, name.c_str()), 1, reinterpret_cast<const GLfloat*>(&value));
+}
+
 namespace {
     std::string readFile(const std::filesystem::path &path) {
         std::ifstream fileStream(path, std::ios::binary);

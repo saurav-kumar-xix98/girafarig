@@ -13,11 +13,12 @@
 
 int main() {
     girafarig::platform::GlfwContext::initialize();
-    const girafarig::platform::Window window(800, 600, "Girafagir");
+    const girafarig::platform::Window window(800, 600, "Girafarig");
     girafarig::graphics::context::OpenGlContext::initialize();
 
     const girafarig::graphics::shader::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
     shaderProgram.useProgram();
+    shaderProgram.setUniform("uColor", {1.0f, 0.0f, 0.0f, 1.0f});
 
     const std::vector<girafarig::Vertex> vertices = {
         { 0.5f,  0.5f, 0.0f},
@@ -42,7 +43,7 @@ int main() {
     indexBuffer.bind();
     girafarig::graphics::buffer::IndexBuffer::addIndices(indices);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(girafarig::Vertex), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(girafarig::Vertex), nullptr);
     glEnableVertexAttribArray(0);
 
     while (!window.shouldClose()) {
@@ -51,7 +52,7 @@ int main() {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
         window.swapBuffers();
         glfwPollEvents();

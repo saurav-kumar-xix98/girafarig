@@ -1,5 +1,7 @@
 #pragma once
 
+#include "math/vector.h"
+
 #include <filesystem>
 
 namespace girafarig::graphics::shader {
@@ -9,6 +11,7 @@ namespace girafarig::graphics::shader {
         ~ShaderProgram();
 
         void useProgram() const;
+        void setUniform(const std::string &name, math::Vector<4> value) const;
     private:
         const unsigned int id;
     };
