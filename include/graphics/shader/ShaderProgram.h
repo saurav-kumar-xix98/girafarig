@@ -1,8 +1,9 @@
 #pragma once
 
-#include "math/vector.h"
-
 #include <filesystem>
+
+#include "math/matrix.h"
+#include "math/vector.h"
 
 namespace girafarig::graphics::shader {
     class ShaderProgram {
@@ -11,7 +12,8 @@ namespace girafarig::graphics::shader {
         ~ShaderProgram();
 
         void useProgram() const;
-        void setUniform(const std::string &name, math::Vector<4> value) const;
+        void setUniform(const std::string &name, const math::Vector<4> &value) const;
+        void setUniform(const std::string &name, const math::Matrix<4, 4> &value) const;
     private:
         const unsigned int id;
     };

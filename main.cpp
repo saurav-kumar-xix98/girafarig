@@ -1,3 +1,4 @@
+#include <cmath>
 #include <vector>
 
 #include "graphics/buffer/IndexBuffer.h"
@@ -11,6 +12,18 @@
 
 #include <glad/glad.h>
 
+#include "math/matrix.h"
+
+girafarig::math::Matrix<4, 4> perspective(const float fovYRadians, const float aspectRatio, const float near, const float far) {
+    const float k = std::tan(fovYRadians * 0.5f);
+    return {
+        { 1 / (k * aspectRatio), 0.0f, 0.0f, 0.0f },
+        { 0.0f, 1 / k, 0.0f, 0.0f },
+        { 0.0f, 0.0f, (far + near) / (near - far), 2 * far * near / (near - far) },
+        { 0.0f, 0.0f, -1.0f, 0.0f }
+    };
+}
+
 int main() {
     girafarig::platform::GlfwContext::initialize();
     const girafarig::platform::Window window(800, 600, "Girafarig");
@@ -18,13 +31,12 @@ int main() {
 
     const girafarig::graphics::shader::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
     shaderProgram.useProgram();
-    shaderProgram.setUniform("uColor", {1.0f, 0.0f, 0.0f, 1.0f});
 
     const std::vector<girafarig::Vertex> vertices = {
-        { 0.5f,  0.5f, 0.0f},
-        { 0.5f, -0.5f, 0.0f},
-        {-0.5f, -0.5f, 0.0f},
-        {-0.5f,  0.5f, 0.0f}
+        { 0.5f,  0.5f, -1.0f},
+        { 0.5f, -0.5f, -1.0f},
+        {-0.5f, -0.5f, -1.0f},
+        {-0.5f,  0.5f, -1.0f}
     };
 
     const std::vector<unsigned int> indices = {
@@ -48,6 +60,9 @@ int main() {
 
     while (!window.shouldClose()) {
         window.processInput();
+
+        shaderProgram.setUniform("uColor", {1.0f, 0.0f, 0.0f, 1.0f});
+        shaderProgram.setUniform("uPerspective", perspective(45.0f * 3.14 / 180.0f, window.aspectRatio(), 0.1f, 100.0f));
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);

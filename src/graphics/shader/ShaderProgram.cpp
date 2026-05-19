@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "glad/glad.h"
+#include "math/matrix.h"
 
 namespace {
     std::string readFile(const std::filesystem::path &path);
@@ -45,8 +46,12 @@ void girafarig::graphics::shader::ShaderProgram::useProgram() const {
     glUseProgram(id);
 }
 
-void girafarig::graphics::shader::ShaderProgram::setUniform(const std::string& name, const math::Vector<4> value) const {
+void girafarig::graphics::shader::ShaderProgram::setUniform(const std::string& name, const math::Vector<4> &value) const {
     glUniform4fv(glGetUniformLocation(id, name.c_str()), 1, reinterpret_cast<const GLfloat*>(&value));
+}
+
+void girafarig::graphics::shader::ShaderProgram::setUniform(const std::string& name, const math::Matrix<4, 4> &value) const {
+    glUniformMatrix4fv(glGetUniformLocation(id, name.c_str()), 1, GL_TRUE, reinterpret_cast<const GLfloat*>(&value));
 }
 
 namespace {
