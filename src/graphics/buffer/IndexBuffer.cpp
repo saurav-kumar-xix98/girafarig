@@ -1,4 +1,4 @@
-#include "../../../include/graphics/buffer/IndexBuffer.h"
+#include "graphics/buffer/IndexBuffer.h"
 
 #include "glad/glad.h"
 

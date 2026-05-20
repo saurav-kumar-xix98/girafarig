@@ -1,14 +1,12 @@
 #include "graphics/shader/ShaderProgram.h"
 
 #include <filesystem>
-
-#include "graphics/shader/Shader.h"
-
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #include "glad/glad.h"
-#include "math/matrix.h"
+#include "graphics/shader/Shader.h"
 
 namespace {
     std::string readFile(const std::filesystem::path &path);

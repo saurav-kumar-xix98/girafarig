@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../Vertex.h"
+#include "graphics/Vertex.h"
 
 namespace girafarig::graphics::buffer {
     class VertexBuffer {

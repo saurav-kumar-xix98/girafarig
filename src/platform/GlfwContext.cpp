@@ -1,4 +1,4 @@
-#include "../../include/platform/GlfwContext.h"
+#include "platform/GlfwContext.h"
 
 #include <GLFW/glfw3.h>
 

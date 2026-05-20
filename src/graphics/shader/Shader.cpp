@@ -1,7 +1,6 @@
 #include "graphics/shader/Shader.h"
 
 #include <iostream>
-#include <ostream>
 
 #include "glad/glad.h"
 

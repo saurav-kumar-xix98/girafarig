@@ -9,11 +9,16 @@ namespace girafarig::math {
     public:
         Vector();
         Vector(std::initializer_list<float> values);
+
         float& operator[](uint8_t index);
         const float& operator[](uint8_t index) const;
+
+        Vector<N> operator*(float scale) const;
+
+        void normalize();
     private:
         std::array<float, N> data;
     };
 }
 
-#include "vector.tpp"
+#include "Vector.tpp"

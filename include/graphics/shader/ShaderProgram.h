@@ -2,8 +2,8 @@
 
 #include <filesystem>
 
-#include "math/matrix.h"
-#include "math/vector.h"
+#include "math/Matrix.h"
+#include "math/Vector.h"
 
 namespace girafarig::graphics::shader {
     class ShaderProgram {

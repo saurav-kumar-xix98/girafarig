@@ -1,4 +1,4 @@
-#include "../../../include/graphics/buffer/VertexArray.h"
+#include "graphics/buffer/VertexArray.h"
 
 #include "glad/glad.h"
 

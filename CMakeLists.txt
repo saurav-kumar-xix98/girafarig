@@ -31,6 +31,8 @@ add_executable(girafarig
         src/graphics/buffer/IndexBuffer.cpp
         src/graphics/buffer/VertexBuffer.cpp
         src/graphics/buffer/VertexArray.cpp
+        src/math/Matrix.cpp
+        src/math/Quaternion.cpp
 )
 
 target_include_directories(girafarig PRIVATE

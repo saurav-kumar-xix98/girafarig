@@ -1,9 +1,8 @@
-#include "../../include/platform/Window.h"
+#include "platform/Window.h"
 
 #include <iostream>
-#include <stdexcept>
 
-#include <glad/glad.h>
+#include "glad/glad.h"
 
 namespace {
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);

@@ -1,11 +1,10 @@
-#include "../../../include/graphics/context/OpenGlContext.h"
+#include "graphics/context/OpenGlContext.h"
 
 #include <iostream>
-#include <stdexcept>
-
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-#include <glad/glad.h>
+
+#include "glad/glad.h"
 
 void girafarig::graphics::context::OpenGlContext::initialize() {
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {

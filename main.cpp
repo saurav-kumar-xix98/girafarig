@@ -1,28 +1,14 @@
-#include <cmath>
-#include <vector>
-
+#include "glad/glad.h"
+#include "graphics/Vertex.h"
 #include "graphics/buffer/IndexBuffer.h"
 #include "graphics/buffer/VertexArray.h"
 #include "graphics/buffer/VertexBuffer.h"
 #include "graphics/context/OpenGlContext.h"
 #include "graphics/shader/ShaderProgram.h"
-#include "graphics/Vertex.h"
+#include "math/Matrix.h"
+#include "math/Quaternion.h"
 #include "platform/GlfwContext.h"
 #include "platform/Window.h"
-
-#include <glad/glad.h>
-
-#include "math/matrix.h"
-
-girafarig::math::Matrix<4, 4> perspective(const float fovYRadians, const float aspectRatio, const float near, const float far) {
-    const float k = std::tan(fovYRadians * 0.5f);
-    return {
-        { 1 / (k * aspectRatio), 0.0f, 0.0f, 0.0f },
-        { 0.0f, 1 / k, 0.0f, 0.0f },
-        { 0.0f, 0.0f, (far + near) / (near - far), 2 * far * near / (near - far) },
-        { 0.0f, 0.0f, -1.0f, 0.0f }
-    };
-}
 
 int main() {
     girafarig::platform::GlfwContext::initialize();
@@ -58,11 +44,16 @@ int main() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(girafarig::Vertex), nullptr);
     glEnableVertexAttribArray(0);
 
+    float angle = 0.0f;
+
     while (!window.shouldClose()) {
         window.processInput();
 
         shaderProgram.setUniform("uColor", {1.0f, 0.0f, 0.0f, 1.0f});
-        shaderProgram.setUniform("uPerspective", perspective(45.0f * 3.14 / 180.0f, window.aspectRatio(), 0.1f, 100.0f));
+        auto projectionMatrix = girafarig::math::createPerspectiveProjectionMatrix(45.0f * 3.14f / 180.0f, window.aspectRatio(), 0.1f, 100.0f);
+        shaderProgram.setUniform("uProjection", projectionMatrix);
+        auto viewMatrix = girafarig::math::createViewMatrix({ 2.0f, 0.0f, 5.0f }, girafarig::math::Quaternion({0.0f, 0.0f, 1.0f}, angle * 3.14f / 180.0f));
+        shaderProgram.setUniform("uView", viewMatrix);
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -71,6 +62,8 @@ int main() {
 
         window.swapBuffers();
         glfwPollEvents();
+        angle += 0.1f;
+        while (angle > 360.0f) angle -= 360.0f;
     }
 
     girafarig::platform::GlfwContext::terminate();
