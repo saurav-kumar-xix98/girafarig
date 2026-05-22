@@ -8,7 +8,9 @@
 namespace girafarig::graphics::shader {
     class ShaderProgram {
     public:
-        ShaderProgram(const std::filesystem::path &vertexShaderFilePath, const std::filesystem::path &fragmentShaderFilePath);
+        ShaderProgram(const std::filesystem::path &vertexShaderFilePath,
+                      const std::filesystem::path &geometryShaderFilePath,
+                      const std::filesystem::path &fragmentShaderFilePath);
         ~ShaderProgram();
 
         void useProgram() const;

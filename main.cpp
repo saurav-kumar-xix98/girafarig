@@ -15,19 +15,15 @@ int main() {
     const girafarig::platform::Window window(800, 600, "Girafarig");
     girafarig::graphics::context::OpenGlContext::initialize();
 
-    const girafarig::graphics::shader::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/FragmentShader.glsl");
+    const girafarig::graphics::shader::ShaderProgram shaderProgram("./resource/shader/VertexShader.glsl", "./resource/shader/GeometryShader.glsl", "./resource/shader/FragmentShader.glsl");
     shaderProgram.useProgram();
 
     const std::vector<girafarig::Vertex> vertices = {
-        { 0.5f,  0.5f, -1.0f},
-        { 0.5f, -0.5f, -1.0f},
-        {-0.5f, -0.5f, -1.0f},
-        {-0.5f,  0.5f, -1.0f}
+        { 0.0f,  0.0f, 0.0f }
     };
 
     const std::vector<unsigned int> indices = {
-        0, 1, 3,
-        1, 2, 3
+        0
     };
 
     const girafarig::graphics::buffer::VertexArray vertexArray;
@@ -58,7 +54,7 @@ int main() {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_POINTS, 1, GL_UNSIGNED_INT, nullptr);
 
         window.swapBuffers();
         glfwPollEvents();

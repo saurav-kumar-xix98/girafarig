@@ -2,10 +2,8 @@
 
 #include <iostream>
 
-#include "glad/glad.h"
-
 girafarig::graphics::shader::Shader::Shader(const std::string_view source, const ShaderType type)
-    : id(glCreateShader(type == VERTEX_SHADER ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER)) {
+    : id(glCreateShader(static_cast<GLenum>(type))) {
 
     const char* shaderSource = source.data();
     glShaderSource(id, 1, &shaderSource, nullptr);

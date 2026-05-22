@@ -12,16 +12,22 @@ namespace {
     std::string readFile(const std::filesystem::path &path);
 }
 
-girafarig::graphics::shader::ShaderProgram::ShaderProgram(const std::filesystem::path &vertexShaderFilePath, const std::filesystem::path &fragmentShaderFilePath)
+girafarig::graphics::shader::ShaderProgram::ShaderProgram(const std::filesystem::path &vertexShaderFilePath,
+        const std::filesystem::path &geometryShaderFilePath,
+        const std::filesystem::path &fragmentShaderFilePath)
     : id(glCreateProgram()) {
 
     const std::string vertexShaderSource = readFile(vertexShaderFilePath);
-    const Shader vertexShader(vertexShaderSource, VERTEX_SHADER);
+    const Shader vertexShader(vertexShaderSource, ShaderType::VERTEX_SHADER);
+
+    const std::string geometryShaderSource = readFile(geometryShaderFilePath);
+    const Shader geometryShader(geometryShaderSource, ShaderType::GEOMETRY_SHADER);
 
     const std::string fragmentShaderSource = readFile(fragmentShaderFilePath);
-    const Shader fragmentShader(fragmentShaderSource, FRAGMENT_SHADER);
+    const Shader fragmentShader(fragmentShaderSource, ShaderType::FRAGMENT_SHADER);
 
     glAttachShader(id, vertexShader.getId());
+    glAttachShader(id, geometryShader.getId());
     glAttachShader(id, fragmentShader.getId());
 
     glLinkProgram(id);
